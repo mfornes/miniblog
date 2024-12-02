@@ -1,0 +1,20 @@
+    Usuarios y Perfiles
+
+        /users - Listar y Crear
+        /users/{userId} - Detalle, Actualizar y Eliminar
+
+        /users/{userId}/profile - Detalle y Actualizar
+
+    Posts y Comentarios
+
+        /posts - Listar y Crear
+        /posts/{postId} - Detalle, Actualizar y Eliminar: To do Actualizar
+
+        /posts/{postId}/comments - Listar y Crear
+        /posts/{postId}/comments/{commentId} - Detalle, Actualizar y Eliminar: To do Actualizar
+
+        /posts/{postId}/tags Listar y Crear
+
+    Tags
+        /tags - Listar y Crear: To do
+        /tags/{tag_id} - Dealle, Actualizar y Eliminar: To do
