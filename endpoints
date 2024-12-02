@@ -8,7 +8,7 @@
     Posts y Comentarios
 
         /posts - Listar y Crear
-        /posts/{postId} - Detalle, Actualizar y Eliminar: To do Actualizar
+        /posts/{postId} - Detalle, Actualizar y Eliminar
 
         /posts/{postId}/comments - Listar y Crear
         /posts/{postId}/comments/{commentId} - Detalle, Actualizar y Eliminar: To do Actualizar
@@ -18,3 +18,14 @@
     Tags
         /tags - Listar y Crear: To do
         /tags/{tag_id} - Dealle, Actualizar y Eliminar: To do
+
+Tareas:
+    
+    /posts/{postId} - Actualizar: To do Actualizar
+    /posts/{postId}/comments/{commentId} - Actualizar: To do Actualizar
+
+    Tags
+        /tags - Listar y Crear: To do
+        /tags/{tag_id} - Dealle, Actualizar y Eliminar: To do
+
+    UserProfileSerializer add phone_number validate.
