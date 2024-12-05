@@ -12,6 +12,16 @@
 				{
 					"name": "all",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{ACCESS_TOKEN}}",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [
 							{
@@ -528,6 +538,174 @@
 					"response": []
 				}
 			]
+		},
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "JWT",
+					"item": [
+						{
+							"name": "token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extract access_token and refresh_token value and store it in the environment variable ACCESS_TOKEN and REFRESH_TOKEN\", function () {",
+											"  const response = pm.response.json();",
+											"  pm.collectionVariables.set(\"ACCESS_TOKEN\", response.access);",
+											"  pm.collectionVariables.set(\"REFRESH_TOKEN\", response.refresh);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"username\": \"admin\", \n\"password\": \"admin\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/token/",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"token",
+										""
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "refresh",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extract access_token and refresh_token value and store it in the environment variable ACCESS_TOKEN and REFRESH_TOKEN\", function () {",
+											"  const response = pm.response.json();",
+											"  pm.collectionVariables.set(\"ACCESS_TOKEN\", response.access);",
+											"  pm.collectionVariables.set(\"REFRESH_TOKEN\", response.refresh);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "refresh",
+											"value": "{{REFRESH_TOKEN}}",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{API_URL}}/token/refresh/",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"token",
+										"refresh",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Ldap",
+					"item": [
+						{
+							"name": "login",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"pm.test(\"Extract access_token and refresh_token value and store it in the environment variable ACCESS_TOKEN and REFRESH_TOKEN\", function () {",
+											"  const response = pm.response.json();",
+											"  pm.collectionVariables.set(\"ACCESS_TOKEN\", response.access);",
+											"  pm.collectionVariables.set(\"REFRESH_TOKEN\", response.refresh);",
+											"});"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\"username\": \"galieleo\", \n\"password\": \"password\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{API_URL}}/ldap/login/",
+									"host": [
+										"{{API_URL}}"
+									],
+									"path": [
+										"ldap",
+										"login",
+										""
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
 		}
 	],
 	"event": [
@@ -556,6 +734,16 @@
 		{
 			"key": "API_URL",
 			"value": "http://localhost:8000/api/v1",
+			"type": "string"
+		},
+		{
+			"key": "ACCESS_TOKEN",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "REFRESH_TOKEN",
+			"value": "",
 			"type": "string"
 		}
 	]
